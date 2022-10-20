@@ -22,6 +22,8 @@ Plug 'neoclide/coc.nvim', {'branch' : 'release' }
 Plug 'machakann/vim-highlightedyank'
 Plug 'cespare/vim-toml'
 Plug 'tpope/vim-surround'
+"---- PHP Plugins ----"
+Plug 'lumiliet/vim-twig'
 call plug#end()
 imap jj <Esc>
 nmap <C-P> :Files<CR>
