@@ -1,0 +1,7 @@
+[user]
+	name = jmwill86
+	email = jmwill86@users.noreply.github.com
+[safe]
+	directory = /home/john/Documents/Work/dotfiles
+[diff]
+	tool = meld
