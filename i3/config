@@ -10,11 +10,13 @@
 
 set $mod Mod1
 
-set $browser "Google-chrome"
+#set $browser "Google-chrome"
+set $browser "Brave-browser"
 set $terminal "Alacritty"
 set $music "Spotify"
 set $chat "discord"
 set $chat2 "Slack"
+set $video_stream "obs"
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -134,7 +136,7 @@ bindsym $mod+1 workspace number $ws1, [class=$terminal] focus
 bindsym $mod+2 workspace number $ws1, [class=$browser] focus
 bindsym $mod+3 workspace number $ws2, [class=$chat] focus
 bindsym $mod+4 workspace number $ws2, [class=$music] focus 
-bindsym $mod+5 workspace number $ws3
+bindsym $mod+5 workspace number $ws4, [class=$video_stream] focus
 bindsym $mod+6 workspace number $ws6
 bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
@@ -165,7 +167,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 exec --no-startup-id $HOME/.config/polybar/launch.sh
 
 exec alacritty --working-directory $HOME/Documents/Work
-exec google-chrome
+exec brave-browser
 exec discord
 exec slack
 exec spotify
@@ -174,6 +176,7 @@ assign [class=$browser] number $ws1
 for_window [class=$music] move to workspace $ws4
 assign [class=$chat2] number $ws3
 assign [class=$chat] number $ws3
+assign [class=$video_stream] number $ws4
 
 # resize window (you can also use the mouse for that)
 mode "resize" {

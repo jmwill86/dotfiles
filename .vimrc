@@ -33,6 +33,7 @@ let php_var_selector_is_identifier = 1
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:NERDTreeShowHidden=1
 set hidden
 let g:rustfmt_autosave = 1
 set path+=**
@@ -47,6 +48,7 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set clipboard=unnamedplus
+set noswapfile
 filetype plugin on
 filetype plugin indent on
 syntax enable
