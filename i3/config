@@ -117,11 +117,58 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+# ******************* DESKTOP VERSION **********************
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1: Developer"
-set $ws2 "2: Chat"
-set $ws3 "3: Other"
+#set $ws1 "1: Developer"
+#set $ws2 "2: Chat"
+#set $ws3 "3: Other"
+#set $ws4 "4: Music"
+#set $ws5 "5"
+#set $ws6 "6"
+#set $ws7 "7"
+#set $ws8 "8"
+#set $ws9 "9"
+#set $ws10 "10"
+#
+## switch to workspace
+#bindsym $mod+1 workspace number $ws1, [class=$terminal] focus
+#bindsym $mod+2 workspace number $ws1, [class=$browser] focus
+#bindsym $mod+3 workspace number $ws2, [class=$chat] focus
+#bindsym $mod+4 workspace number $ws2, [class=$music] focus 
+#bindsym $mod+5 workspace number $ws4, [class=$video_stream] focus
+#bindsym $mod+6 workspace number $ws6
+#bindsym $mod+7 workspace number $ws7
+#bindsym $mod+8 workspace number $ws8
+#bindsym $mod+9 workspace number $ws9
+#bindsym $mod+0 workspace number $ws10
+#
+## move focused container to workspace
+#bindsym $mod+Shift+1 move container to workspace number $ws1
+#bindsym $mod+Shift+2 move container to workspace number $ws2
+#bindsym $mod+Shift+3 move container to workspace number $ws3
+#bindsym $mod+Shift+4 move container to workspace number $ws4
+#bindsym $mod+Shift+5 move container to workspace number $ws5
+#bindsym $mod+Shift+6 move container to workspace number $ws6
+#bindsym $mod+Shift+7 move container to workspace number $ws7
+#bindsym $mod+Shift+8 move container to workspace number $ws8
+#bindsym $mod+Shift+9 move container to workspace number $ws9
+#bindsym $mod+Shift+0 move container to workspace number $ws10
+#
+#assign [class=$browser] number $ws1
+#for_window [class=$music] move to workspace $ws4
+#assign [class=$chat2] number $ws3
+#assign [class=$chat] number $ws3
+#assign [class=$video_stream] number $ws4
+
+# ******************* LAPTOP VERSION **********************
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1: Terminal"
+set $ws2 "2: Browser"
+set $ws3 "3: Chat"
 set $ws4 "4: Music"
 set $ws5 "5"
 set $ws6 "6"
@@ -130,12 +177,11 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-
 # switch to workspace
 bindsym $mod+1 workspace number $ws1, [class=$terminal] focus
-bindsym $mod+2 workspace number $ws1, [class=$browser] focus
-bindsym $mod+3 workspace number $ws2, [class=$chat] focus
-bindsym $mod+4 workspace number $ws2, [class=$music] focus 
+bindsym $mod+2 workspace number $ws2, [class=$browser] focus
+bindsym $mod+3 workspace number $ws3, [class=$chat] focus
+bindsym $mod+4 workspace number $ws4, [class=$music] focus 
 bindsym $mod+5 workspace number $ws4, [class=$video_stream] focus
 bindsym $mod+6 workspace number $ws6
 bindsym $mod+7 workspace number $ws7
@@ -154,6 +200,15 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
+
+assign [class=$browser] number $ws1
+assign [class=$terminal] number $ws2
+assign [class=$chat2] number $ws3
+assign [class=$chat] number $ws3
+for_window [class=$music] move to workspace $ws4
+assign [class=$video_stream] number $ws4
+
+# ******************* LAPTOP VERSION END **********************
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -214,7 +269,6 @@ bindsym $mod+r mode "resize"
         #background #3c3836
         #statusline #ebdbb2
         #separator  #666666
-        
         #focused_workspace  #458588 #458588 #ebdbb2
         #active_workspace   #83a598 #83a598 #ebdbb2
         #inactive_workspace #504945 #504945 #ebdbb2
