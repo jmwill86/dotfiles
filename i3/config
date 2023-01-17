@@ -201,8 +201,8 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-assign [class=$browser] number $ws1
-assign [class=$terminal] number $ws2
+assign [class=$terminal] number $ws1
+assign [class=$browser] number $ws2
 assign [class=$chat2] number $ws3
 assign [class=$chat] number $ws3
 for_window [class=$music] move to workspace $ws4
@@ -222,16 +222,10 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 exec --no-startup-id $HOME/.config/polybar/launch.sh
 
 exec alacritty --working-directory $HOME/Documents/Work
-exec brave-browser
+exec google-chrome-stable
 exec discord
 exec slack
 exec spotify
-
-assign [class=$browser] number $ws1
-for_window [class=$music] move to workspace $ws4
-assign [class=$chat2] number $ws3
-assign [class=$chat] number $ws3
-assign [class=$video_stream] number $ws4
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
