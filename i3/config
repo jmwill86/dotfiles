@@ -3,7 +3,6 @@
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
 #
-
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
@@ -11,7 +10,7 @@
 set $mod Mod1
 
 #set $browser "Google-chrome"
-set $browser "Brave-browser"
+set $browser "Google-chrome"
 set $terminal "Alacritty"
 set $music "Spotify"
 set $chat "discord"
@@ -156,6 +155,7 @@ bindsym $mod+a focus parent
 #bindsym $mod+Shift+9 move container to workspace number $ws9
 #bindsym $mod+Shift+0 move container to workspace number $ws10
 #
+#assign [class=$terminal] number $ws1
 #assign [class=$browser] number $ws1
 #for_window [class=$music] move to workspace $ws4
 #assign [class=$chat2] number $ws3
@@ -221,11 +221,18 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 exec --no-startup-id $HOME/.config/polybar/launch.sh
 
-exec alacritty --working-directory $HOME/Documents/Work
+exec alacritty --working-directory $HOME
 exec google-chrome-stable
 exec discord
 exec slack
 exec spotify
+
+assign [class=$terminal] number $ws1
+assign [class=$browser] number $ws2
+assign [class=$chat2] number $ws3
+assign [class=$chat] number $ws3
+for_window [class=$music] move to workspace $ws4
+assign [class=$video_stream] number $ws4
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -286,6 +293,7 @@ set $aqua #689d68
 set $gray #a89984
 set $darkgray #1d2021
 set $primary #83a598
+set $white #FFFFFF
 
 #start of bar section
 #bar {
