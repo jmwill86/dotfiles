@@ -222,7 +222,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 exec --no-startup-id $HOME/.config/polybar/launch.sh
 
 exec alacritty --working-directory $HOME
-exec google-chrome-stable
+exec google-chrome-unstable
 exec discord
 exec slack
 exec spotify
