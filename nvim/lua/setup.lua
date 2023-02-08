@@ -1,11 +1,16 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
+vim.opt.scrolloff = 8
+vim.opt.colorcolumn = "120"
 
-vim.keymap.set("n", "<C-r>", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>-/gI<LEFT><LEFT><LEFT><BS>");
-vim.keymap.set('x', '<c-r>', 'y:%s/<C-R>"/<C-R>"-/gI<LEFT><LEFT><LEFT><BS>')
+vim.keymap.set("n", "<C-h>", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>-/gI<LEFT><LEFT><LEFT><BS>");
+vim.keymap.set('x', '<C-h>', 'y:%s/<C-R>"/<C-R>"-/gI<LEFT><LEFT><LEFT><BS>');
 
--- Show line diagnostics automatically in hover window
+vim.keymap.set("v", "J", ":m '>+1<cr>gv=gv");
+vim.keymap.set("v", "K", ":m '<-2<cr>gv=gv");
+
+-- show line diagnostics automatically in hover window
 vim.diagnostic.config({
   virtual_text = false
 })
@@ -118,7 +123,7 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup({
     sources = {
         null_ls.builtins.diagnostics.phpcs.with({
-            extra_args = {"--standard", "PSR12"}
+            extra_args = {"--standard=PSR12"}
         }),
         null_ls.builtins.diagnostics.php,
         null_ls.builtins.formatting.phpcsfixer,
@@ -138,3 +143,37 @@ null_ls.setup({
         end
     end,
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

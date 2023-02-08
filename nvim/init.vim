@@ -51,10 +51,10 @@ Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v1.x'}
 
 call plug#end()
 
-lua require('setup')
 
 imap jj <Esc>
 nmap <C-P> :Telescope find_files<CR>
+"nmap <C-P> :Telescope git_files<CR>
 nmap <C-F> :Telescope live_grep<CR>
 nmap <C-n> :NvimTreeToggle<CR>
 let g:rehash256 = 1
@@ -68,14 +68,15 @@ let g:rustfmt_autosave = 1
 set path+=**
 set wildmenu
 set number
-set mouse=a
+"set mouse=a
+set mouse=
 set guifont=Roboto\ Mono\ 12
 set nowrap
 set t_Co=256
 set expandtab
 set tabstop=4
 set shiftwidth=4
-set clipboard=unnamedplus
+set clipboard+=unnamedplus
 filetype plugin on
 filetype plugin indent on
 syntax enable
@@ -89,3 +90,5 @@ let g:gruvbox_material_foreground = 'original'
 let g:gruvbox_material_background = 'normal'
 let g:gruvbox_material_better_performance = 1
 colorscheme gruvbox-material
+
+lua require('setup')
