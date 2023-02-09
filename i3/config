@@ -183,6 +183,7 @@ bindsym $mod+2 workspace number $ws2, [class=$browser] focus
 bindsym $mod+3 workspace number $ws3, [class=$chat] focus
 bindsym $mod+4 workspace number $ws4, [class=$music] focus 
 bindsym $mod+5 workspace number $ws4, [class=$video_stream] focus
+bindsym $mod+5 workspace number $ws5
 bindsym $mod+6 workspace number $ws6
 bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
@@ -330,4 +331,25 @@ client.unfocused        $darkgray $darkgray $gray $purple $darkgray
 client.urgent           $red $red $white $red $red
 
 #end of window title bars & borders section
+
+## Screenshots
+bindsym Print exec --no-startup-id maim "/home/$USER/Pictures/$(date)"
+bindsym $mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date)"
+bindsym Shift+Print exec --no-startup-id maim --select "/home/$USER/Pictures/$(date)"
+
+## Clipboard Screenshots
+bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
+bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+
+
+# swap caps lock and escape
+#exec_always --no-startup-id xmodmap -e "keycode 66 = Escape NoSymbol Escape"
+#exec_always --no-startup-id xmodmap -e "keycode 9 = Caps_Lock NoSymbol Caps_Lock"
+#exec_always --no-startup-id xmodmap -e "keycode 20 = Caps_Lock"
+
+exec_always --no-startup-id xmodmap -e "clear lock"
+
+#exec_always --no-startup-id xmodmap -e "clear lock"
+
 
