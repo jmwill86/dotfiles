@@ -2,13 +2,21 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 20
 vim.opt.colorcolumn = "120"
+--vim.o.relativenumber = 1
 
-vim.keymap.set("n", "<C-h>", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>-/gI<LEFT><LEFT><LEFT><BS>");
-vim.keymap.set('x', '<C-h>', 'y:%s/<C-R>"/<C-R>"-/gI<LEFT><LEFT><LEFT><BS>');
+vim.keymap.set("n", "<C-y>", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>-/gI<LEFT><LEFT><LEFT><BS>");
+vim.keymap.set('x', '<C-y>', 'y:%s/<C-R>"/<C-R>"-/gI<LEFT><LEFT><LEFT><BS>');
 
 vim.keymap.set("v", "J", ":m '>+1<cr>gv=gv");
 vim.keymap.set("v", "K", ":m '<-2<cr>gv=gv");
+
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<C-p>', builtin.find_files, {})
+vim.keymap.set('n', '<C-f>', builtin.live_grep, {})
+--vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+--vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
 -- show line diagnostics automatically in hover window
 vim.diagnostic.config({
@@ -77,7 +85,7 @@ require'nvim-treesitter.configs'.setup {
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
+    additional_vim_regex_highlighting = true,
   },
 }
 
@@ -127,6 +135,7 @@ null_ls.setup({
         }),
         null_ls.builtins.diagnostics.php,
         null_ls.builtins.formatting.phpcsfixer,
+        null_ls.builtins.formatting.rustfmt
     },
     -- you can reuse a shared lspconfig on_attach callback here
     on_attach = function(client, bufnr)
@@ -143,36 +152,6 @@ null_ls.setup({
         end
     end,
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

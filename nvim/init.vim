@@ -1,4 +1,3 @@
-
 " auto-install vim-plug
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
@@ -12,9 +11,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'kristijanhusak/vim-packager', { 'type': 'opt' }
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
-
-
-
+Plug 'rust-lang/rust.vim'
 Plug 'preservim/nerdcommenter'
 Plug 'yggdroot/indentline'
 Plug 'christoomey/vim-tmux-navigator'
@@ -51,20 +48,14 @@ Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v1.x'}
 
 call plug#end()
 
-
 imap jj <Esc>
-nmap <C-P> :Telescope find_files<CR>
-"nmap <C-P> :Telescope git_files<CR>
-nmap <C-F> :Telescope live_grep<CR>
+"nmap <C-P> :Telescope find_files<CR>
+"nmap <C-F> :Telescope live_grep<CR>
 nmap <C-n> :NvimTreeToggle<CR>
 let g:rehash256 = 1
 "let php_var_selector_is_identifier = 1
-"let g:UltiSnipsExpandTrigger="<tab>"
-"let g:UltiSnipsJumpForwardTrigger="<tab>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:db_ui_auto_execute_table_helpers = 1
 set hidden
-let g:rustfmt_autosave = 1
 set path+=**
 set wildmenu
 set number
@@ -91,4 +82,9 @@ let g:gruvbox_material_background = 'normal'
 let g:gruvbox_material_better_performance = 1
 colorscheme gruvbox-material
 
+let g:rustfmt_autosave = 1
+"let g:rustfmt_emit_files = 1
+"let g:rustfmt_fail_silently = 0
+
 lua require('setup')
+
