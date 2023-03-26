@@ -17,6 +17,10 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  boot.kernel.sysctl = {
+    "net.ipv4.ip_unprivileged_port_start" = 80;
+  };
+  
   networking.hostName = "jw-nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -24,7 +28,7 @@
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
   # Set your time zone.
-  # time.timeZone = "Europe/Amsterdam";
+  time.timeZone = "Europe/London";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -49,6 +53,7 @@
 
 services.blueman.enable = true;
 
+
 virtualisation.docker.enable = true; 
 virtualisation.docker.rootless = { 
 	enable = true;
@@ -57,6 +62,7 @@ virtualisation.docker.rootless = {
 
 
 
+services.udisks2.enable = true;
 
 
   # Configure keymap in X11
@@ -101,35 +107,47 @@ virtualisation.docker.rootless = {
   # $ nix search wget
 
 	environment.systemPackages = with pkgs; [
-		neovim
-		tmux
-		php
-		slack
+		actkbd
+		alacritty
+		bashmount
+		blueman
+		brightnessctl
+		dbeaver
 		discord
+		docker
+		fd
+		filezilla
+		gcc
+		gimp
+		google-chrome-dev
+		libreoffice
+		maim
 		meld
 		mpd
-		wine
-		rofi
-		actkbd
-		google-chrome-dev
-		brightnessctl
-		polybar
-		wget
-		unzip
-		filezilla
-		dbeaver
-		spotify
-		alacritty
-		blueman
-		docker
-		nodejs
-		gimp
-		python3
 		mysql80
-		libreoffice
-		fd
+		neovim
+		networkmanager
+		nodejs
+		php
+		polybar
+		python3
 		ripgrep
-		gcc
+		rofi
+		rustup
+		rust-analyzer
+		slack
+		spotify
+		sysctl
+		tmux
+		udisks2
+		unzip
+		wget
+		wine
+		xclip
+		gnumake
+		pkg-config
+		openssl
+		openssl_1_1
 	];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -144,16 +162,15 @@ virtualisation.docker.rootless = {
  services.actkbd = {
      enable = true;
      bindings = [
-       { keys = [ 232 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/brightnessctl set 10-"; }
-       { keys = [ 233 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/brightnessctl set +10"; }
+       { keys = [ 232 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/brightnessctl set 30-"; }
+       { keys = [ 233 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/brightnessctl set +30"; }
      ];
    };
 
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
+  services.openssh.enable = true;
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
