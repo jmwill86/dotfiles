@@ -1,7 +1,12 @@
 [user]
 	name = jmwill86
 	email = jmwill86@users.noreply.github.com
-[safe]
-	directory = /home/john/Documents/Work/dotfiles
+    ignorecase = false
 [diff]
 	tool = meld
+[pull]
+	rebase = false
+[log]
+	decorate = auto
+[core]
+	editor = nvim
