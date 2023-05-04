@@ -46,6 +46,8 @@
   services.xserver.enable = true;
   services.xserver.libinput.touchpad.naturalScrolling = true;
   services.xserver.windowManager.i3.enable = true;
+  services.gvfs.enable = true;
+
   # services.xserver.windowManager.i3.configFile = /home/john/dotfiles/i3/config;
   # services.xserver.windowManager.i3.extraPackages = with pkgs; [
   #   dmenu
@@ -189,6 +191,6 @@ services.udisks2.enable = true;
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.11"; # Did you read the comment?
-
+  system.autoUpgrade.enable = true;
 }
 
