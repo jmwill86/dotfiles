@@ -1,7 +1,7 @@
 [user]
-	name = jmwill86
+	name = John Williams
 	email = jmwill86@users.noreply.github.com
-    ignorecase = false
+        ignorecase = false
 [diff]
 	tool = meld
 [pull]
@@ -10,3 +10,7 @@
 	decorate = auto
 [core]
 	editor = nvim
+[safe]
+	directory = /home/john/work/symfony_dc
+[help]
+	autocorrect = 1
