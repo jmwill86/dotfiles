@@ -9,18 +9,26 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
+  
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
- nixpkgs.config.allowUnfree = true;  
-
+  nixpkgs.config.allowUnfree = true;  
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.configurationLimit = 10;
+  nix.gc.automatic = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
-
   boot.kernel.sysctl = {
     "net.ipv4.ip_unprivileged_port_start" = 80;
   };
+
   
+  networking.extraHosts =
+  ''
+    127.0.0.1 localhost.com
+  '';
+
   networking.hostName = "jw-nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -46,7 +54,10 @@
   services.xserver.enable = true;
   services.xserver.libinput.touchpad.naturalScrolling = true;
   services.xserver.windowManager.i3.enable = true;
+  services.xserver.libinput.touchpad.disableWhileTyping = true;
+
   services.gvfs.enable = true;
+  services.udev.enable = true;
 
   # services.xserver.windowManager.i3.configFile = /home/john/dotfiles/i3/config;
   # services.xserver.windowManager.i3.extraPackages = with pkgs; [
@@ -55,13 +66,11 @@
 
 services.blueman.enable = true;
 
-
 virtualisation.docker.enable = true; 
 virtualisation.docker.rootless = { 
 	enable = true;
 	setSocketVariable = true;
 };
-
 
 
 services.udisks2.enable = true;
@@ -101,56 +110,77 @@ services.udisks2.enable = true;
    }
  '';
 
-
+ services.avahi = {
+     enable = true;
+     nssmdns = true;
+     publish = {
+       enable = true;
+       addresses = true;
+       domain = true;
+       hinfo = true;
+       userServices = true;
+       workstation = true;
+     };
+ };
  
 	# boot.kernelParams = ["amdgpu.backlight=0" "acpi_backlight=none"];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
 
-	environment.systemPackages = with pkgs; [
-		actkbd
-		alacritty
-		bashmount
-		blueman
-		brightnessctl
-		dbeaver
-		discord
-		docker
-		fd
-		filezilla
-		gcc
-		gimp
-		google-chrome-dev
-		libreoffice
-		maim
-		meld
-		mpd
-		mysql80
-		neovim
-		networkmanager
-		nodejs
-		php
-		polybar
-		python3
-		ripgrep
-		rofi
-		rustup
-		rust-analyzer
-		slack
-		spotify
-		sysctl
-		tmux
-		udisks2
-		unzip
-		wget
-		wine
-		xclip
-		gnumake
-		pkg-config
-		openssl
-		openssl_1_1
-	];
+environment.systemPackages = with pkgs; [
+	alacritty
+	 bashmount
+	micromamba 
+	 blueman
+	 brightnessctl
+	 brave
+	 dbeaver
+	 discord
+	 docker
+	 qbittorrent
+	# fd
+	 filezilla
+	 gcc
+	 gimp
+	 google-chrome
+	 keyd
+	dolphin-emu
+	# # kanata
+	 libreoffice
+	 maim
+	 meld
+	# mpd
+	 mysql80
+	 neovim
+	 neovide
+	 networkmanager
+	# nodejs
+	 openvpn
+	 php82
+	 polybar
+	 python3
+	 ripgrep
+	 rofi
+	 rustup
+	 rust-analyzer
+	 slack
+	 spotify
+	  sublime3
+	  sysctl
+	  systemd
+	 tmux
+	 conda
+	 # udisks2
+	 unzip
+	 wget
+	# wine
+	avahi
+	 xclip
+	 gnumake
+	 pkg-config
+        beekeeper-studio
+];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -159,20 +189,31 @@ services.udisks2.enable = true;
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+# 	services.kanata.enable = true;
+# 
+# services.kanata.keyboards.default.devices = [
+#       "/dev/input/by-path/platform-i8042-serio-0-event-kbd" # laptop keyboards
+# ];
+# 
+# services.kanata.keyboards.default.config = ''
+# 
+# '';
+
+  programs.openvpn3.enable = true;
 
 # programs.light.enable = true;
- services.actkbd = {
-     enable = true;
-     bindings = [
-       { keys = [ 232 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/brightnessctl set 30-"; }
-       { keys = [ 233 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/brightnessctl set +30"; }
-     ];
-   };
+ #services.actkbd = {
+ #    enable = true;
+ #    bindings = [
+ #      { keys = [ 232 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/brightnessctl set 30-"; }
+ #      { keys = [ 233 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/brightnessctl set +30"; }
+ #    ];
+ #  };
 
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  # services.openssh.enable = true;
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -190,7 +231,29 @@ services.udisks2.enable = true;
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.11"; # Did you read the comment?
+  system.stateVersion = "23.11"; # Did you read the comment?
   system.autoUpgrade.enable = true;
+
+  # services.keyd.enable = true;
+  # systemd.services = {
+  #   # https://github.com/NixOS/nixpkgs/issues/59603#issuecomment-1356844284
+  #   NetworkManager-wait-online.enable = false;
+
+  #   keyd = {
+  #     enable = true;
+  #     description = "keyd key remapping daemon";
+  #     unitConfig = {
+  #       Requires = "local-fs.target";
+  #       After = "local-fs.target";
+  #     };
+  #     serviceConfig = {
+  #       Type = "simple";
+  #       ExecStart = "${pkgs.keyd}/bin/keyd";
+  #     };
+  #   };
+  # };
+  #environment.etc."keyd/default.conf".text = keydConfig;
+
 }
+
 
