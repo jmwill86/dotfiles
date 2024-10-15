@@ -9,18 +9,26 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
+  
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
- nixpkgs.config.allowUnfree = true;  
-
+  nixpkgs.config.allowUnfree = true;  
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.configurationLimit = 10;
+  nix.gc.automatic = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
-
   boot.kernel.sysctl = {
     "net.ipv4.ip_unprivileged_port_start" = 80;
   };
+
   
+  networking.extraHosts =
+  ''
+    127.0.0.1 localhost.com
+  '';
+
   networking.hostName = "jw-nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -30,23 +38,14 @@
   # Set your time zone.
   time.timeZone = "Europe/London";
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkbOptions in tty.
-  # };
-
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.libinput.touchpad.naturalScrolling = true;
+  services.libinput.touchpad.naturalScrolling = true;
   services.xserver.windowManager.i3.enable = true;
+  services.libinput.touchpad.disableWhileTyping = true;
+
   services.gvfs.enable = true;
+  services.udev.enable = true;
 
   # services.xserver.windowManager.i3.configFile = /home/john/dotfiles/i3/config;
   # services.xserver.windowManager.i3.extraPackages = with pkgs; [
@@ -55,7 +54,6 @@
 
 services.blueman.enable = true;
 
-
 virtualisation.docker.enable = true; 
 virtualisation.docker.rootless = { 
 	enable = true;
@@ -63,12 +61,11 @@ virtualisation.docker.rootless = {
 };
 
 
-
 services.udisks2.enable = true;
 
 
   # Configure keymap in X11
-   services.xserver.layout = "us";
+   services.xserver.xkb.layout = "us";
    # services.xserver.xkbOptions = "caps:escape";
 
   # Enable CUPS to print documents.
@@ -78,18 +75,20 @@ services.udisks2.enable = true;
   sound.enable = true;
   hardware.pulseaudio.enable = true;
   hardware.bluetooth.enable = true;
+  
+  hardware.opengl = {
+    enable = true;
+  }; 
+
+  services.xserver.videoDrivers = ["amdgpu"];
 
   # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
  users.users.john = {
    isNormalUser = true;
    extraGroups = [ "wheel" "networkmanager" "docker" ]; 
-#   packages = with pkgs; [
-#     firefox
-#     thunderbird
-#   ];
  };
 
 
@@ -101,87 +100,76 @@ services.udisks2.enable = true;
    }
  '';
 
-
+ services.avahi = {
+     enable = true;
+     nssmdns4 = true;
+     publish = {
+       enable = true;
+       addresses = true;
+       domain = true;
+       hinfo = true;
+       userServices = true;
+       workstation = true;
+     };
+ };
  
 	# boot.kernelParams = ["amdgpu.backlight=0" "acpi_backlight=none"];
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
+programs.thunar.enable = true;
+environment.systemPackages = with pkgs; [
+	sublime3
+	sysctl
+	systemd
+	bashmount
+	blueman
+	brave
+	brightnessctl
+	conda
+	dbeaver-bin
+	discord
+	docker
+	filezilla
+	gcc
+	gimp
+	gnumake
+	google-chrome
+	keyd
+	libreoffice
+	maim
+	meld
+	mysql80
+	neovim
+	networkmanager
+	openvpn
+	php82
+	pkg-config
+	polybar
+	python3
+	qbittorrent
+	ripgrep
+	rofi
+	rust-analyzer
+	rustup
+	slack
+	spotify
+	tmux
+	unzip
+	vlc
+	wget
+	xclip
+	alacritty
+	avahi
+	dolphin-emu
+	micromamba 
+	shotcut
+	trash-cli
+        radeontop	
+];
 
-	environment.systemPackages = with pkgs; [
-		actkbd
-		alacritty
-		bashmount
-		blueman
-		brightnessctl
-		dbeaver
-		discord
-		docker
-		fd
-		filezilla
-		gcc
-		gimp
-		google-chrome-dev
-		libreoffice
-		maim
-		meld
-		mpd
-		mysql80
-		neovim
-		networkmanager
-		nodejs
-		php
-		polybar
-		python3
-		ripgrep
-		rofi
-		rustup
-		rust-analyzer
-		slack
-		spotify
-		sysctl
-		tmux
-		udisks2
-		unzip
-		wget
-		wine
-		xclip
-		gnumake
-		pkg-config
-		openssl
-		openssl_1_1
-	];
+  programs.openvpn3.enable = true;
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-# programs.light.enable = true;
- services.actkbd = {
-     enable = true;
-     bindings = [
-       { keys = [ 232 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/brightnessctl set 30-"; }
-       { keys = [ 233 ]; events = [ "key" ]; command = "/run/current-system/sw/bin/brightnessctl set +30"; }
-     ];
-   };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
   system.copySystemConfiguration = true;
 
   # This value determines the NixOS release from which the default
@@ -190,7 +178,8 @@ services.udisks2.enable = true;
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.11"; # Did you read the comment?
+  system.stateVersion = "24.05"; # Did you read the comment?
   system.autoUpgrade.enable = true;
-}
 
+
+}
