@@ -1,0 +1,157 @@
+* {
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+}
+#waybar {
+  background: #20262c;
+  color: #eeeeef;
+  font-size: 14px;
+  font-family: "Hack Nerd Font";
+  border-bottom: solid 2px #2a323b;
+}
+
+#workspaces button {
+  /*padding: 0 5px;*/
+  padding-right: 6px;
+  color: #999;
+}
+/* Fix: active workspace doesn't show up */
+/* #workspaces button.focused { */
+#workspaces button.active {
+  color: #fa5aa4;
+  /*padding-right: 30px;*/
+}
+
+#workspaces button:hover {
+  color: #ffffff;
+  background: transparent;
+  /*border-top: solid 0px #000;*/
+  /*padding-right: 30px;*/
+}
+
+
+#workspaces,
+#pulseaudio,
+#custom-powermenu {
+  padding: 4px 8px;
+  border-radius: 8px;
+  margin: 6px 4px;
+}
+
+#cpu.cpu,
+#disk.disk,
+#temperature,
+#memory.memory,
+#clock.clock,
+#battery.battery,
+#backlight.backlight,
+#window,
+#custom-updates,
+#network.network {
+  padding: 4px 8px;
+  background-color: #2a323b;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  margin: 6px 4px 6px 0;
+  color: #ccc;
+  font-weight:bold;
+}
+
+#clock.clock-icon,
+#battery.battery-icon,
+#backlight.backlight-icon,
+#memory.memory-icon,
+#cpu.cpu-icon,
+#disk.disk-icon,
+#network.network-icon
+ {
+  /*min-width:30px;*/
+  padding: 4px 8px;
+  background-color: #353f4a;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  margin: 6px 0px 6px 4px;
+  font-size:16px;
+}
+
+#workspaces {
+  /*padding: 4px 8px;*/
+  /*background-color: #303643;*/
+  /*border-radius: 30px;*/
+  /*margin: 20px 20px;*/
+}
+
+#window {
+  color: #929db1;
+}
+
+#tray {
+  margin-left: 4px;
+}
+
+#custom-updates {
+  color: #1788e4;
+}
+
+#custom-powermenu {
+  background-color: #db86ba;
+  color: #20262c;
+  padding-right: 13px;
+  margin-right: 8px;
+}
+
+#scratchpad {
+  color: #cffafe;
+  padding-right: 4px;
+  padding-left: 4px;
+}
+
+#pulseaudio {
+  background-color: #353f4a;
+  color: #72d88f;
+  padding-right: 13px;
+}
+
+#cpu.cpu-icon {
+  color: #db86ba;
+}
+
+#temperature {
+  color: #98c379;
+}
+
+#memory.memory-icon {
+  color: #72d88f;
+  font-size:14px;
+}
+
+#network.network-icon {
+  color: #de8e84;
+  padding-right: 12px;
+}
+
+#backlight.backlight-icon {
+  color: #b4a1db;
+  padding-right: 12px;
+}
+
+#disk.disk-icon {
+  color: #de8e84;
+  /*padding-right: 12px;*/
+}
+
+#clock {
+  margin-left: 8px;
+}
+
+#custom-terminal {
+    font-size: 20px;
+    padding-right:20px;
+    padding-left:10px;
+    background-color: #2a323b;
+    border-top-right-radius: 16px;
+    margin: 0px;
+}

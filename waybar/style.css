@@ -1,0 +1,172 @@
+@define-color color1 #98971a;
+@define-color color2 #d79921;
+@define-color color3 #458588;
+@define-color color4 #b16286;
+@define-color color5 #689d6a;
+@define-color textcolour #ebdbb2;
+@define-color bg #282828;
+
+* {
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+}
+#waybar {
+  /*background: #20262c;*/
+  /*background: #1d2021;*/
+  background: @bg;
+  /*color: @textcolour;*/
+  color: #000;
+  font-size: 14px;
+  font-family: "Hack Nerd Font";
+  border-bottom: solid 1px rgba(255,255,255,0.08);
+}
+
+#workspaces button {
+  /*padding: 0 5px;*/
+  padding-right: 6px;
+  color: #999;
+}
+/* Fix: active workspace doesn't show up */
+/* #workspaces button.focused { */
+#workspaces button.active {
+  /*color: #fa5aa4;*/
+  /*color: #458588;*/
+    color: @color3;
+
+  /*padding-right: 30px;*/
+}
+
+#workspaces button:hover {
+  color: #ffffff;
+  background: transparent;
+  /*border-top: solid 0px #000;*/
+  /*padding-right: 30px;*/
+}
+
+
+#workspaces,
+#pulseaudio,
+#custom-powermenu {
+  padding: 4px 8px;
+  border-radius: 8px;
+  margin: 6px 4px;
+}
+
+#cpu.cpu,
+#disk.disk,
+#temperature,
+#memory.memory,
+#clock.clock,
+#battery.battery,
+#backlight.backlight,
+#window,
+#custom-updates,
+#network.network {
+  padding: 4px 8px;
+  background-color: rgba(255,255,255,0.06);
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  margin: 6px 4px 6px 0;
+  /*color: #ccc;*/
+  color: @textcolour;
+  font-weight:bold;
+}
+
+#clock.clock-icon,
+#battery.battery-icon,
+#backlight.backlight-icon,
+#memory.memory-icon,
+#cpu.cpu-icon,
+#disk.disk-icon,
+#network.network-icon
+ {
+  /*min-width:30px;*/
+  padding: 4px 8px;
+  background-color: rgba(255,255,255,0.11);
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  margin: 6px 0px 6px 4px;
+  font-size:16px;
+}
+
+/*#workspaces {*/
+  /*[>padding: 4px 8px;<]*/
+  /*[>background-color: #303643;<]*/
+  /*[>border-radius: 30px;<]*/
+  /*[>margin: 20px 20px;<]*/
+/*}*/
+
+/*#window {*/
+  /*[>color: #929db1;<]*/
+  /*[>color: #000;<]*/
+/*}*/
+
+/*#tray {*/
+  /*margin-left: 4px;*/
+/*}*/
+
+/*#custom-updates {*/
+  /*color: #000;*/
+/*}*/
+
+
+#cpu.cpu-icon {
+  color: @color4;
+}
+
+#memory.memory-icon {
+  color: @color5;
+  font-size:14px;
+}
+
+#disk.disk-icon {
+  color: @color1;
+}
+
+#backlight.backlight-icon {
+  color: @color2;
+  padding-right: 12px;
+}
+
+#battery.battery-icon {
+  color: @color3;
+}
+
+#pulseaudio {
+  background-color: rgba(255,255,255,0.11);
+  color: @color4;
+  padding-right: 13px;
+}
+
+#network.network-icon {
+  color: @color5;
+  padding-right: 12px;
+}
+
+#clock {
+  color: @color1;
+  margin-left: 8px;
+}
+
+#custom-powermenu {
+  /*background-color: #d3869b;*/
+  background-color: @color4;
+  color: #20262c;
+  padding-right: 13px;
+  margin-right: 8px;
+}
+
+
+#custom-terminal {
+    font-size: 20px;
+    padding-right:20px;
+    padding-left:10px;
+    /*background-color: #2a323b;*/
+
+    background-color: rgba(255,255,255,0.06);
+    border-top-right-radius: 16px;
+    margin: 0px;
+}
