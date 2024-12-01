@@ -13,6 +13,7 @@
   margin: 0;
   padding: 0;
 }
+
 #waybar {
   /*background: #20262c;*/
   /*background: #1d2021;*/
@@ -21,7 +22,7 @@
   color: #000;
   font-size: 14px;
   font-family: "Hack Nerd Font";
-  border-bottom: solid 1px rgba(255,255,255,0.08);
+  border-bottom: solid 1px rgba(255, 255, 255, 0.08);
 }
 
 #workspaces button {
@@ -29,12 +30,13 @@
   padding-right: 6px;
   color: #999;
 }
+
 /* Fix: active workspace doesn't show up */
 /* #workspaces button.focused { */
 #workspaces button.active {
   /*color: #fa5aa4;*/
   /*color: #458588;*/
-    color: @color3;
+  color: @color3;
 
   /*padding-right: 30px;*/
 }
@@ -66,13 +68,13 @@
 #custom-updates,
 #network.network {
   padding: 4px 8px;
-  background-color: rgba(255,255,255,0.06);
+  background-color: rgba(255, 255, 255, 0.06);
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
   margin: 6px 4px 6px 0;
   /*color: #ccc;*/
   color: @textcolour;
-  font-weight:bold;
+  font-weight: bold;
 }
 
 #clock.clock-icon,
@@ -81,35 +83,34 @@
 #memory.memory-icon,
 #cpu.cpu-icon,
 #disk.disk-icon,
-#network.network-icon
- {
+#network.network-icon {
   /*min-width:30px;*/
   padding: 4px 8px;
-  background-color: rgba(255,255,255,0.11);
+  background-color: rgba(255, 255, 255, 0.11);
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
   margin: 6px 0px 6px 4px;
-  font-size:16px;
+  font-size: 16px;
 }
 
 /*#workspaces {*/
-  /*[>padding: 4px 8px;<]*/
-  /*[>background-color: #303643;<]*/
-  /*[>border-radius: 30px;<]*/
-  /*[>margin: 20px 20px;<]*/
+/*[>padding: 4px 8px;<]*/
+/*[>background-color: #303643;<]*/
+/*[>border-radius: 30px;<]*/
+/*[>margin: 20px 20px;<]*/
 /*}*/
 
 /*#window {*/
-  /*[>color: #929db1;<]*/
-  /*[>color: #000;<]*/
+/*[>color: #929db1;<]*/
+/*[>color: #000;<]*/
 /*}*/
 
 /*#tray {*/
-  /*margin-left: 4px;*/
+/*margin-left: 4px;*/
 /*}*/
 
 /*#custom-updates {*/
-  /*color: #000;*/
+/*color: #000;*/
 /*}*/
 
 
@@ -119,7 +120,7 @@
 
 #memory.memory-icon {
   color: @color5;
-  font-size:14px;
+  font-size: 14px;
 }
 
 #disk.disk-icon {
@@ -136,7 +137,7 @@
 }
 
 #pulseaudio {
-  background-color: rgba(255,255,255,0.11);
+  background-color: rgba(255, 255, 255, 0.11);
   color: @color4;
   padding-right: 13px;
 }
@@ -161,12 +162,12 @@
 
 
 #custom-terminal {
-    font-size: 20px;
-    padding-right:20px;
-    padding-left:10px;
-    /*background-color: #2a323b;*/
+  font-size: 20px;
+  padding-right: 20px;
+  padding-left: 10px;
+  /*background-color: #2a323b;*/
 
-    background-color: rgba(255,255,255,0.06);
-    border-top-right-radius: 16px;
-    margin: 0px;
+  background-color: rgba(255, 255, 255, 0.06);
+  border-top-right-radius: 16px;
+  margin: 0px;
 }
