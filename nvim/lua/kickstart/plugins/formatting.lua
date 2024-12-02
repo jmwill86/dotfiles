@@ -15,7 +15,6 @@ return {
         json = { "prettier" },
         yaml = { "prettier" },
         markdown = { "prettier" },
-        lua = { "stylua" },
         php = { "php_cs_fixer" },
       },
       format_on_save = {
@@ -24,6 +23,10 @@ return {
         timeout_ms = 1000,
       },
     })
+
+    require("conform").formatters.php_cs_fixer = {
+      prepend_args = { "--allow-risky=yes" },
+    }
 
     vim.keymap.set({ "n", "v" }, "<leader>mp", function()
       conform.format({
