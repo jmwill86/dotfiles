@@ -1,0 +1,30 @@
+set hidden true
+set ignorecase true
+set icons true
+
+cmd mkfile ${{
+	printf "File Name: "
+	read ans
+	$EDITOR $ans
+}}
+
+cmd delete ${{
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	printf "%s\n\t" "$fx"
+	printf "delete?[y/N]"
+	read ans
+	[ $ans = "y" ] && rm -rf -- $fx
+}}
+
+
+
+#bindings
+map p paste
+map x cut
+map y copy
+# map <enter> open
+map a mkfile
+# map r push A<a-b><a-b><a-f>
+map D delete
+
