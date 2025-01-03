@@ -119,9 +119,8 @@ services.udisks2.enable = true;
   # $ nix search wget
 programs.thunar.enable = true;
 environment.systemPackages = with pkgs; [
-	sublime3
-	sysctl
-	systemd
+	alacritty
+	avahi
 	bashmount
 	blueman
 	brave
@@ -130,6 +129,7 @@ environment.systemPackages = with pkgs; [
 	dbeaver-bin
 	discord
 	docker
+	dolphin-emu
 	filezilla
 	gcc
 	gimp
@@ -137,8 +137,10 @@ environment.systemPackages = with pkgs; [
 	google-chrome
 	keyd
 	libreoffice
+	lf
 	maim
 	meld
+	micromamba 
 	mysql80
 	neovim
 	networkmanager
@@ -152,19 +154,18 @@ environment.systemPackages = with pkgs; [
 	rofi
 	rust-analyzer
 	rustup
+	shotcut
 	slack
 	spotify
+	sublime3
+	sysctl
+	systemd
 	tmux
+	trash-cli
 	unzip
 	vlc
 	wget
 	xclip
-	alacritty
-	avahi
-	dolphin-emu
-	micromamba 
-	shotcut
-	trash-cli
         radeontop	
 ];
 

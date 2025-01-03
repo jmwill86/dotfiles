@@ -1,0 +1,167 @@
+{
+  "layer": "top",
+    "position": "top",
+    "margin-bottom": 0,
+    "modules-left": [
+      "custom/terminal",
+      "hyprland/workspaces",
+      "custom/updates",
+    ],
+    "modules-center": [
+      "cpu#cpu-icon",
+      "cpu#cpu",
+      "memory#memory-icon",
+      "memory#memory",
+      "disk#disk-icon",
+      "disk#disk",
+    ],
+    "modules-right": [
+      "backlight#backlight-icon",
+      "backlight#backlight",
+      "battery#battery-icon",
+      "battery#battery",
+      "pulseaudio#bluetooth",
+      "network#network-icon",
+      "network#network",
+      "clock#clock-icon",
+      "clock#clock",
+      "custom/powermenu",
+    ],
+    "hyprland/submap": {
+      "format": "✌️ {}",
+      "max-length": 8,
+      "tooltip": true
+    },
+    "hyprland/workspaces": {
+      "format": "{icon}",
+      "format-icons": {
+        "-99": "",
+        "active": "",
+        "default": ""
+      }
+    },
+    "network#network": {
+      "interface": "wlp2s0",
+      "tooltip-format-ethernet": "{ifname} ",
+      "tooltip-format": " {bandwidthDownBits}  {bandwidthUpBits}",
+      "interval": 2,
+      "format": "{essid}",
+    },
+    "network#network-icon": {
+      "interface": "wlp2s0", // ifconfig to get this
+      "tooltip-format-ethernet": "{ifname} ",
+      "interval": 2,
+      "format": "<span>0</span>",
+      "format-ethernet": "<span>1</span>",
+      "format-wifi": "<span>{icon}</span>",
+      "format-linked": "<span></span>",
+      "format-disconnected": "<span></span>",
+      "format-icons": ["󰤭","󰤟", "󰤢", "󰤥" ],
+      //"format-icons": ["󰤭", "󰤯", "󰤟", "󰤢", "󰤥" ],
+      //"tooltip-format": " {bandwidthDownBits}  {bandwidthUpBits}",
+    },
+    "memory#memory-icon": {
+      "format": "",
+      "tooltip": "false"
+    },
+    "memory#memory": {
+      "format": "{}%",
+      "tooltip": "false"
+    },
+    "cpu#cpu-icon": {
+      "format": "󰄧",
+      "tooltip": "false"
+    },
+    "cpu#cpu": {
+      "format": "{usage}%",
+      "tooltip": "true"
+    },
+    "custom/powermenu": {
+      "format": "",
+      "tooltip": false,
+      "on-click": "exec wlogout -p layer-shell",
+    },
+    "pulseaudio#bluetooth": {
+      "format": "{icon}",
+      //"format-bluetooth": "{volume}% {icon}",
+      //"format-muted": "",
+      "format-icons": {
+          "headphone": "",
+          "hands-free": "g",
+          "headset": "",
+          "phone": "",
+          "portable": "",
+          "car": "",
+          "default": ["", ""]
+      },
+      //"scroll-step": 1,
+      //"on-click": "pavucontrol"
+    },
+    //"pulseaudio#bluetooth-icon": {
+      //"format": "{icon}",
+      //"format-bluetooth": "{icon}",
+      //"format-muted": "",
+      //"format-icons": {
+          //"headphone": "",
+          //"hands-free": "?",
+          //"headset": "",
+          //"phone": "",
+          //"portable": "",
+          //"car": "",
+          //"default": ["", ""]
+      //},
+      //"scroll-step": 1,
+      //"on-click": "pavucontrol"
+    //},
+    "clock#clock": {
+      "format": "{:%d %b, %H:%M}",
+      "interval": 60,
+      "tooltip": true,
+      "tooltip-format": "{:%d %B %H:%M}"
+    },
+    "clock#clock-icon": {
+      "format": "󱑓",
+      "interval": 60,
+      "tooltip": true,
+      "tooltip-format": "{:%d %B %H:%M}"
+    },
+    "battery#battery": {
+      "format": "{capacity}%",
+      "interval": 60,
+      "tooltip": true,
+    },
+    "battery#battery-icon": {
+      "format": "{icon}",
+      "format-icons": ["󰂎", "󰁻", "󰁽", "󰁿", "󰂁", "󰁹"],
+      "interval": 60,
+      "tooltip": true,
+    },
+    "backlight#backlight": {
+      "format": "{percent}%",
+      "interval": 60,
+      "tooltip": true,
+      "on-click": "[[ $(brightnessctl get) -eq 204 ]] && brightnessctl set 20% || brightnessctl set 80%"
+    },
+    "backlight#backlight-icon": {
+      "format": "{icon}",
+      "format-icons": ["󰃛", ""],
+      "interval": 60,
+      "tooltip": true,
+      "on-click": "[[ $(brightnessctl get) -eq 204 ]] && brightnessctl set 20% || brightnessctl set 80%"
+    },
+    "disk#disk": {
+      "format": "{free}",
+      "interval": 60,
+      "tooltip": true,
+    },
+    "disk#disk-icon": {
+      "format": "󰋊",
+      "interval": 60,
+      "tooltip": true,
+    },
+    "custom/terminal": {
+      "format": "<span color=\"#a89984\"></span>",
+      "on-click": "alacritty"
+    }
+}
+
