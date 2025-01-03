@@ -172,7 +172,7 @@ vim.g.loaded_netrwPlugin = 1
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set("n", "<C-y>", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>-/gI<LEFT><LEFT><LEFT><BS>");
 vim.keymap.set('x', '<C-y>', 'y:%s/<C-R>"/<C-R>"-/gI<LEFT><LEFT><LEFT><BS>');
-
+vim.keymap.set('', '<C-i>', ':CopilotChat ', { noremap = true, silent = true })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
