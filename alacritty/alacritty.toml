@@ -32,50 +32,81 @@ foreground = "#ebdbb2"
 WINIT_X11_SCALE_FACTOR = "1"
 
 [font]
-size = 10
-#normal = { family = "Roboto Mono", style = "Regular" } # not working
+size = 11
+normal = { family = "Roboto Mono", style = "Regular" } # not working
 
-[[keyboard.bindings]]
-action = "SpawnNewInstance"
-key = "Return"
-mods = "Control|Shift"
+#[[keyboard.bindings]]
+#action = "SpawnNewInstance"
+#key = "Return"
+#mods = "Control|Shift"
 
-[[keyboard.bindings]]
-action = "ScrollPageUp"
-key = "PageUp"
-mode = "~Alt"
-mods = "Shift"
+#[[keyboard.bindings]]
+#action = "ScrollPageUp"
+#key = "PageUp"
+#mode = "~Alt"
+#mods = "Shift"
 
-[[keyboard.bindings]]
-action = "ScrollPageDown"
-key = "PageDown"
-mode = "~Alt"
-mods = "Shift"
+#[[keyboard.bindings]]
+#action = "ScrollPageDown"
+#key = "PageDown"
+#mode = "~Alt"
+#mods = "Shift"
 
-[[keyboard.bindings]]
-action = "ScrollToTop"
-key = "Home"
-mode = "~Alt"
-mods = "Shift"
+#[[keyboard.bindings]]
+#action = "ScrollToTop"
+#key = "Home"
+#mode = "~Alt"
+#mods = "Shift"
 
-[[keyboard.bindings]]
-action = "ScrollToBottom"
-key = "End"
-mode = "~Alt"
-mods = "Shift"
+#[[keyboard.bindings]]
+#action = "ScrollToBottom"
+#key = "End"
+#mode = "~Alt"
+#mods = "Shift"
+
+  #- { key: C, mods: Control|Shift, chars: "\x03" }
+
+[keyboard]
+bindings = [
+  { key = "D", mods = "Control|Shift", chars = "\u0003" }, # Rebind cancel
+  #{ key = "C", mods = "Control|Shift", chars = "\x03"},
+  #{ key = "V",        mods = "Control|Shift", action = "Paste" },
+  #{ key = "C",        mods = "Control|Shift", action = "Copy" },
+  #{ key = "Paste",                            action = "Paste" },
+  #{ key = "Copy",                             action = "Copy" },
+  #{ key = "Insert",   mods = "Shift",         action = "PasteSelection" },
+  #{ key = "F",        mods = "Control|Shift", action = "SearchForward",     mode = "~Search" },
+  #{ key = "B",        mods = "Control|Shift", action = "SearchBackward",    mode = "~Search" },
+  #{ key = "Key0",     mods = "Control",       action = "ResetFontSize" },
+  #{ key = "Equals",   mods = "Control",       action = "IncreaseFontSize" },
+  #{ key = "Minus",    mods = "Control",       action = "DecreaseFontSize" },
+  #{ key = "L",        mods = "Control",       action = "ClearLogNotice" },
+  #{ key = "L",        mods = "Control",       chars  = "\f" },
+  #{ key = "PageUp",   mods = "Shift",         action = "ScrollPageUp",      mode = "~Alt" },
+  #{ key = "PageDown", mods = "Shift",         action = "ScrollPageDown",    mode = "~Alt" },
+  #{ key = "Up",       mods = "Shift",         action = "ScrollLineUp",      mode = "~Alt" },
+  #{ key = "Down",     mods = "Shift",         action = "ScrollLineDown",    mode = "~Alt" },
+  #{ key = "Home",     mods = "Shift",         action = "ScrollToTop",       mode = "~Alt" },
+  #{ key = "End",      mods = "Shift",         action = "ScrollToBottom",    mode = "~Alt" },
+]
 
 [scrolling]
 history = 10000
 multiplier = 3
 
 [terminal.shell]
-program = "/run/current-system/sw/bin/tmux"
-
+#program = "/run/current-system/sw/bin/tmux"
+program = "/opt/homebrew/bin/tmux"
 
 [window]
 padding = { x = 0, y = 0 }
+option_as_alt = "Both"
 
 [general]
 live_config_reload = true
 
 [terminal]
+
+
+
+
